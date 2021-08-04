@@ -1,0 +1,104 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateRoleInput {
+  name: String!
+}
+
+input CreateSingleInput {
+  name: String!
+  overhead_cost: Float
+  weight_of_labour: Float
+  work_hour: Float
+}
+
+input CreateUserInput {
+  name: String!
+  password: String!
+  role: String!
+  username: String!
+}
+
+input ListRoleInput {
+  _id: String
+  name: String
+}
+
+input ListSingleInput {
+  _id: String
+  name: String
+  overhead_cost: Float
+  weight_of_labour: Float
+  work_hour: Float
+}
+
+input ListUserInput {
+  _id: String
+  name: String
+  role: String
+  username: String
+}
+
+type Mutation {
+  createRole(payload: CreateRoleInput!): Role!
+  createSingle(payload: CreateSingleInput!): Single!
+  createUser(payload: CreateUserInput!): User!
+  deleteRole(_id: String!): Role!
+  deleteSingle(_id: String!): Single!
+  deleteUser(_id: String!): User!
+  updateRole(payload: UpdateRoleInput!): Role!
+  updateSingle(payload: UpdateSingleInput!): Single!
+  updateUser(payload: UpdateUserInput!): User!
+}
+
+type Query {
+  role(_id: String!): Role!
+  roles(filters: ListRoleInput): [Role!]!
+  single(_id: String!): Single!
+  singles(filters: ListSingleInput): [Single!]!
+  user(_id: String!): User!
+  users(filters: ListUserInput): [User!]!
+}
+
+type Role {
+  _id: String!
+  name: String!
+}
+
+type Single {
+  _id: String!
+  name: String!
+  overhead_cost: Float!
+  weight_of_labour: Float!
+  work_hour: Float!
+}
+
+input UpdateRoleInput {
+  _id: String
+  name: String
+}
+
+input UpdateSingleInput {
+  _id: String
+  name: String
+  overhead_cost: Float
+  weight_of_labour: Float
+  work_hour: Float
+}
+
+input UpdateUserInput {
+  _id: String
+  name: String
+  password: String
+  role: String
+  username: String
+}
+
+type User {
+  _id: String!
+  name: String!
+  password: String!
+  role(populate: Boolean!): Role!
+  username: String!
+}
