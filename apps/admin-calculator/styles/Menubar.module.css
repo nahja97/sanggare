@@ -1,0 +1,16 @@
+.container {
+    background-color: var(--dark);
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn_logout {
+    color: var(--light);
+    font-family: "nova", sans-serif;
+    margin-right: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 16px;
+}
