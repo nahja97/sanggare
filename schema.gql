@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Auth {
+  _id: String!
+  access_token: String!
+  name: String!
+  refresh_token: String!
+  role: Role!
+  username: String!
+}
+
 input CreateRoleInput {
   name: String!
 }
@@ -33,6 +42,11 @@ input ListSingleInput {
   work_hour: Float
 }
 
+input ListUserAuth {
+  password: String!
+  username: String!
+}
+
 input ListUserInput {
   _id: String
   name: String
@@ -47,6 +61,8 @@ type Mutation {
   deleteRole(_id: String!): Role!
   deleteSingle(_id: String!): Single!
   deleteUser(_id: String!): User!
+  login(payload: ListUserAuth!): Auth!
+  refreshToken(payload: RefreshTokenAuth!): Auth!
   updateRole(payload: UpdateRoleInput!): Role!
   updateSingle(payload: UpdateSingleInput!): Single!
   updateUser(payload: UpdateUserInput!): User!
@@ -59,6 +75,11 @@ type Query {
   singles(filters: ListSingleInput): [Single!]!
   user(_id: String!): User!
   users(filters: ListUserInput): [User!]!
+}
+
+input RefreshTokenAuth {
+  access_token: String!
+  refresh_token: String!
 }
 
 type Role {

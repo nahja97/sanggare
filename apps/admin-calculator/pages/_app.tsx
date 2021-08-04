@@ -1,24 +1,24 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
+import Default from "../components/layouts/Default"
+import Login from "../components/layouts/Login"
 import './styles.css';
+import '../styles/global.css';
+import { AuthProvider } from '../lib/auth.js'
 
 function CustomApp({ Component, pageProps }: AppProps) {
+  const Layout = pageProps.layout == 'login' ? Login : Default
   return (
-    <>
+    <AuthProvider>
       <Head>
-        <title>Welcome to admin-calculator!</title>
+        <title>{pageProps.layout == 'login' ? 'Login Page' : (pageProps.meta?.title != undefined ? pageProps.meta?.title + ' - Sanggare' : 'Sanggare')}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content= {pageProps.layout == 'login' ? 'Login Page' : (pageProps.meta?.description != undefined ? pageProps.meta?.description : 'Sanggare')}/>
       </Head>
-      <div className="app">
-        <header className="flex">
-          <NxLogo width="75" height="50" />
-          <h1>Welcome to admin-calculator!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AuthProvider>
   );
 }
 

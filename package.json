@@ -5,6 +5,7 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
+    "start:all": "nx run-many --target=serve --all --parallel",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
@@ -27,6 +28,7 @@
   },
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/jwt": "^8.0.0",
