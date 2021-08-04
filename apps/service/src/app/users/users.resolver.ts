@@ -9,7 +9,7 @@ import {
 import { Schema as MongooseSchema, Schema, Types } from 'mongoose'
 import * as bcrypt from 'bcrypt';
 
-const round = 10
+const round = 30
 const salt = bcrypt.genSaltSync(round);
 
 import { User, UserDocument } from './model/users.model'
