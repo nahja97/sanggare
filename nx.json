@@ -27,6 +27,13 @@
     ]
   },
   "projects": {
+    "admin-calculator": {
+      "tags": []
+    },
+    "admin-calculator-e2e": {
+      "tags": [],
+      "implicitDependencies": ["admin-calculator"]
+    },
     "service": {
       "tags": []
     }

@@ -1,6 +1,83 @@
 {
   "version": 2,
   "projects": {
+    "admin-calculator": {
+      "root": "apps/admin-calculator",
+      "sourceRoot": "apps/admin-calculator",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/admin-calculator",
+            "outputPath": "dist/apps/admin-calculator"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "admin-calculator:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "admin-calculator:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "admin-calculator:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/admin-calculator"],
+          "options": {
+            "jestConfig": "apps/admin-calculator/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/admin-calculator/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
+    "admin-calculator-e2e": {
+      "root": "apps/admin-calculator-e2e",
+      "sourceRoot": "apps/admin-calculator-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/admin-calculator-e2e/cypress.json",
+            "tsConfig": "apps/admin-calculator-e2e/tsconfig.e2e.json",
+            "devServerTarget": "admin-calculator:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "admin-calculator:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/admin-calculator-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "service": {
       "root": "apps/service",
       "sourceRoot": "apps/service/src",
@@ -55,5 +132,18 @@
   "cli": {
     "defaultCollection": "@nrwl/nest"
   },
-  "defaultProject": "service"
+  "defaultProject": "service",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  }
 }
