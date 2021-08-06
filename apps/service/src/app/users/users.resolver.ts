@@ -9,7 +9,7 @@ import {
 import { Schema as MongooseSchema, Schema, Types } from 'mongoose'
 import * as bcrypt from 'bcrypt';
 
-const round = 30
+const round = 10
 const salt = bcrypt.genSaltSync(round);
 
 import { User, UserDocument } from './model/users.model'
@@ -72,17 +72,11 @@ export class UsersResolver {
   @ResolveField()
   async role(
     @Parent() user: UserDocument,
-    @Args('populate') populate: boolean,
   ) {
-    if (populate) {
-        try {
-            await user.populate({ path: 'role', model: Role.name }).execPopulate()
-        } catch(err) {
-            throw new Error('Email is already in use')
-        }
+    await user.populate({ path: 'role', model: Role.name }).execPopulate()
+    if (user.role) {
+      return user.role
     }
-    return user.role
-
-    
+    return []
   }
 }

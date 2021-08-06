@@ -11,6 +11,14 @@ type Auth {
   username: String!
 }
 
+input CreateMajorInput {
+  name: String!
+}
+
+input CreateMinorInput {
+  name: String!
+}
+
 input CreateRoleInput {
   name: String!
 }
@@ -22,11 +30,25 @@ input CreateSingleInput {
   work_hour: Float
 }
 
+input CreateTypeInput {
+  name: String!
+}
+
 input CreateUserInput {
   name: String!
   password: String!
   role: String!
   username: String!
+}
+
+input ListMajorInput {
+  _id: String
+  name: String
+}
+
+input ListMinorInput {
+  _id: String
+  name: String
 }
 
 input ListRoleInput {
@@ -42,6 +64,11 @@ input ListSingleInput {
   work_hour: Float
 }
 
+input ListTypeInput {
+  _id: String
+  name: String
+}
+
 input ListUserAuth {
   password: String!
   username: String!
@@ -54,25 +81,50 @@ input ListUserInput {
   username: String
 }
 
+type Major {
+  _id: String!
+  name: String!
+}
+
+type Minor {
+  _id: String!
+  name: String!
+}
+
 type Mutation {
+  createMajor(payload: CreateMajorInput!): Major!
+  createMinor(payload: CreateMinorInput!): Minor!
   createRole(payload: CreateRoleInput!): Role!
   createSingle(payload: CreateSingleInput!): Single!
+  createType(payload: CreateTypeInput!): Type!
   createUser(payload: CreateUserInput!): User!
+  deleteMajor(_id: String!): Major!
+  deleteMinor(_id: String!): Minor!
   deleteRole(_id: String!): Role!
   deleteSingle(_id: String!): Single!
+  deleteType(_id: String!): Type!
   deleteUser(_id: String!): User!
   login(payload: ListUserAuth!): Auth!
   refreshToken(payload: RefreshTokenAuth!): Auth!
+  updateMajor(payload: UpdateMajorInput!): Major!
+  updateMinor(payload: UpdateMinorInput!): Minor!
   updateRole(payload: UpdateRoleInput!): Role!
   updateSingle(payload: UpdateSingleInput!): Single!
+  updateType(payload: UpdateTypeInput!): Type!
   updateUser(payload: UpdateUserInput!): User!
 }
 
 type Query {
+  major(_id: String!): Major!
+  majors(filters: ListMajorInput): [Major!]!
+  minor(_id: String!): Minor!
+  minors(filters: ListMinorInput): [Minor!]!
   role(_id: String!): Role!
   roles(filters: ListRoleInput): [Role!]!
   single(_id: String!): Single!
   singles(filters: ListSingleInput): [Single!]!
+  type(_id: String!): Type!
+  types(filters: ListTypeInput): [Type!]!
   user(_id: String!): User!
   users(filters: ListUserInput): [User!]!
 }
@@ -84,7 +136,7 @@ input RefreshTokenAuth {
 
 type Role {
   _id: String!
-  name: String!
+  name: String
 }
 
 type Single {
@@ -93,6 +145,21 @@ type Single {
   overhead_cost: Float!
   weight_of_labour: Float!
   work_hour: Float!
+}
+
+type Type {
+  _id: String!
+  name: String!
+}
+
+input UpdateMajorInput {
+  _id: String
+  name: String
+}
+
+input UpdateMinorInput {
+  _id: String
+  name: String
 }
 
 input UpdateRoleInput {
@@ -108,6 +175,11 @@ input UpdateSingleInput {
   work_hour: Float
 }
 
+input UpdateTypeInput {
+  _id: String
+  name: String
+}
+
 input UpdateUserInput {
   _id: String
   name: String
@@ -120,6 +192,6 @@ type User {
   _id: String!
   name: String!
   password: String!
-  role(populate: Boolean!): Role!
+  role: Role!
   username: String!
 }

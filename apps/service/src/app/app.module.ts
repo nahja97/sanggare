@@ -9,6 +9,9 @@ import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
 import { SinglesModule } from './singles/singles.module';
 import { AuthModule } from './auth/auth.module';
+import { TypesModule } from './types/types.module';
+import { MajorsModule } from './majors/majors.module';
+import { MinorsModule } from './minors/minors.module';
 
 @Module({
   imports: [
@@ -23,6 +26,9 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     SinglesModule,
     AuthModule,
+    TypesModule,
+    MajorsModule,
+    MinorsModule
   ],
   controllers: [AppController],
   providers: [AppService],

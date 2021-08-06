@@ -22,7 +22,7 @@ export class User {
     password: string
 
     @Field(() => Role)
-    @Prop({ type: MongooseSchema.Types.ObjectId, ref: Role.name })
+    @Prop({ type: MongooseSchema.Types.ObjectId,ref: Role.name })
     role: MongooseSchema.Types.ObjectId | Role
 }
 

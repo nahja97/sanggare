@@ -4,15 +4,15 @@ import { Field, ObjectType } from "@nestjs/graphql"
 
 @ObjectType()
 @Schema()
-export class Role {
+export class Minor {
     @Field(() => String)
     _id: MongooseSchema.Types.ObjectId
 
-    @Field(() => String, {nullable: true})
-    @Prop({index: {unique: true, dropDups: true}, nullable: true, required: false})
+    @Field(() => String)
+    @Prop({index: {unique: true, dropDups: true}})
     name: string
 }
 
-export type RoleDocument = Role & Document
+export type MinorDocument = Minor & Document
 
-export const RoleSchema = SchemaFactory.createForClass(Role)
+export const MinorSchema = SchemaFactory.createForClass(Minor)
